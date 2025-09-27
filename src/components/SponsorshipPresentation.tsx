@@ -152,7 +152,7 @@ const SponsorshipPresentation = () => {
       <NeonOrb size={isMobile ? "w-32 h-32" : "w-80 h-80"} position={isMobile ? "bottom-20 left-4" : "bottom-32 left-16"} delay={1.5} intensity="high" />
       <NeonOrb size={isMobile ? "w-24 h-24" : "w-64 h-64"} position={isMobile ? "top-32 left-8" : "top-40 left-32"} delay={3} intensity="high" />
       
-      <div className={`${isMobile ? 'max-w-sm' : 'max-w-6xl'} w-full text-center space-y-8 relative z-10`}>
+      <div className={`${isMobile ? 'max-w-sm' : 'max-w-6xl'} w-full text-center space-y-8 relative z-20`}>
         <div className="space-y-6">
           <div className="relative">
             <h1 className={`${isMobile ? 'text-4xl' : 'text-8xl'} font-black text-white leading-tight drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
@@ -203,7 +203,7 @@ const SponsorshipPresentation = () => {
       <NeonOrb size={isMobile ? "w-32 h-32" : "w-80 h-80"} position={isMobile ? "top-4 left-4" : "top-10 left-10"} delay={0.5} intensity="high" />
       <NeonOrb size={isMobile ? "w-24 h-24" : "w-72 h-72"} position={isMobile ? "bottom-10 right-4" : "bottom-20 right-20"} delay={2} intensity="high" />
       
-      <div className={`${isMobile ? 'max-w-sm' : 'max-w-7xl'} w-full space-y-8 relative z-10`}>
+      <div className={`${isMobile ? 'max-w-sm' : 'max-w-7xl'} w-full space-y-8 relative z-20`}>
         <h2 className={`${isMobile ? 'text-3xl' : 'text-6xl'} font-bold text-center text-white mb-8 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
           1. Lo que ofrecemos como patrocinadores
         </h2>
@@ -281,7 +281,7 @@ const SponsorshipPresentation = () => {
       <NeonOrb size={isMobile ? "w-28 h-28" : "w-72 h-72"} position={isMobile ? "top-8 right-4" : "top-16 right-16"} delay={1} intensity="high" />
       <NeonOrb size={isMobile ? "w-32 h-32" : "w-88 h-88"} position={isMobile ? "bottom-8 left-4" : "bottom-16 left-32"} delay={2.5} intensity="high" />
       
-      <div className={`${isMobile ? 'max-w-sm' : 'max-w-7xl'} w-full space-y-8 relative z-10`}>
+      <div className={`${isMobile ? 'max-w-sm' : 'max-w-7xl'} w-full space-y-8 relative z-20`}>
         <h2 className={`${isMobile ? 'text-3xl' : 'text-6xl'} font-bold text-center text-white mb-8 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
           2. Lo que solicitamos a cambio
         </h2>
@@ -338,7 +338,7 @@ const SponsorshipPresentation = () => {
       <NeonOrb size={isMobile ? "w-32 h-32" : "w-80 h-80"} position={isMobile ? "top-6 right-6" : "top-12 right-24"} delay={0.8} intensity="high" />
       <NeonOrb size={isMobile ? "w-28 h-28" : "w-72 h-72"} position={isMobile ? "bottom-12 left-6" : "bottom-24 left-48"} delay={2.2} intensity="high" />
       
-      <div className={`${isMobile ? 'max-w-sm' : 'max-w-7xl'} w-full space-y-8 relative z-10`}>
+      <div className={`${isMobile ? 'max-w-sm' : 'max-w-7xl'} w-full space-y-8 relative z-20`}>
         <h2 className={`${isMobile ? 'text-3xl' : 'text-6xl'} font-bold text-center text-white mb-8 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
           3. Beneficios para el Congreso y los asistentes
         </h2>
@@ -373,7 +373,7 @@ const SponsorshipPresentation = () => {
       <NeonOrb size={isMobile ? "w-40 h-40" : "w-96 h-96"} position={isMobile ? "top-8 left-4" : "top-16 left-16"} delay={1} intensity="high" />
       <NeonOrb size={isMobile ? "w-28 h-28" : "w-80 h-80"} position={isMobile ? "bottom-16 right-4" : "bottom-32 right-24"} delay={2.8} intensity="high" />
       
-      <div className={`${isMobile ? 'max-w-sm' : 'max-w-6xl'} w-full text-center space-y-8 relative z-10`}>
+      <div className={`${isMobile ? 'max-w-sm' : 'max-w-6xl'} w-full text-center space-y-8 relative z-20`}>
         <h2 className={`${isMobile ? 'text-3xl' : 'text-6xl'} font-bold text-white mb-8 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
           Firma
         </h2>
