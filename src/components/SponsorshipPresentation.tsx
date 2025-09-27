@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Users, Mic, Gift, Award, CheckCircle, ArrowRight, Sparkles, Building, ClipboardList, HeadphonesIcon, Shield, Menu } from 'lucide-react';
+import juntifyLogo from '@/assets/juntify-logo.png';
+import bniLogo from '@/assets/bni-logo.png';
 
 const SponsorshipPresentation = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -159,16 +161,27 @@ const SponsorshipPresentation = () => {
         <GlassCard className={`${isMobile ? 'max-w-sm' : 'max-w-4xl'} mx-auto text-center`} delay={400}>
           <div className="space-y-4">
             <p className={`${isMobile ? 'text-lg' : 'text-2xl'} text-white`}>San Luis Potosí, 26 de septiembre de 2025</p>
-            <div className="flex items-center justify-center space-x-4">
-              <Mic className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
+            <div className="flex items-center justify-center space-x-6">
+              <img 
+                src={juntifyLogo} 
+                alt="Juntify Logo" 
+                className={`${isMobile ? 'w-16 h-16' : 'w-24 h-24'} object-contain drop-shadow-lg`}
+              />
               <span className={`${isMobile ? 'text-2xl' : 'text-4xl'} font-bold text-white`}>Juntify</span>
-              <Mic className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
             </div>
             <p className={`${isMobile ? 'text-base' : 'text-xl'} text-white/90`}>Plataforma de gestión de reuniones con IA</p>
-            <div className="border-t border-white/20 pt-4 space-y-2">
+            <div className="border-t border-white/20 pt-4 space-y-3">
               <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>De: Ing. Alejandro Báez</p>
               <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Marca/Servicio: [Cero Uno Cero] – Juntify</p>
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Para: Coordinación de Congreso BNI / Sra. Marylú Amaya</p>
+              <div className="flex items-center justify-center space-x-4 pt-2">
+                <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Para: Coordinación de Congreso</p>
+                <img 
+                  src={bniLogo} 
+                  alt="BNI San Luis Potosí" 
+                  className={`${isMobile ? 'w-16 h-12' : 'w-20 h-16'} object-contain`}
+                />
+              </div>
+              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>/ Sra. Marylú Amaya</p>
             </div>
           </div>
         </GlassCard>
@@ -184,6 +197,14 @@ const SponsorshipPresentation = () => {
         <h2 className={`${isMobile ? 'text-3xl' : 'text-6xl'} font-bold text-center text-white mb-8 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
           1. Lo que ofrecemos como patrocinadores
         </h2>
+        
+        <div className="flex justify-center mb-8">
+          <img 
+            src={bniLogo} 
+            alt="BNI San Luis Potosí" 
+            className={`${isMobile ? 'w-24 h-20' : 'w-32 h-28'} object-contain opacity-80`}
+          />
+        </div>
         
         <div className={`grid ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-2'} gap-6`}>
           <GlassCard delay={200}>
@@ -263,6 +284,14 @@ const SponsorshipPresentation = () => {
           2. Lo que solicitamos a cambio
         </h2>
         
+        <div className="flex justify-center mb-8">
+          <img 
+            src={bniLogo} 
+            alt="BNI San Luis Potosí" 
+            className={`${isMobile ? 'w-24 h-20' : 'w-32 h-28'} object-contain opacity-80`}
+          />
+        </div>
+        
         <div className={`grid ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-2'} gap-6`}>
           <GlassCard delay={200}>
             <div className="space-y-4">
@@ -323,6 +352,14 @@ const SponsorshipPresentation = () => {
         <h2 className={`${isMobile ? 'text-3xl' : 'text-6xl'} font-bold text-center text-white mb-8 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
           3. Beneficios para el Congreso y los asistentes
         </h2>
+        
+        <div className="flex justify-center mb-8">
+          <img 
+            src={bniLogo} 
+            alt="BNI San Luis Potosí" 
+            className={`${isMobile ? 'w-24 h-20' : 'w-32 h-28'} object-contain opacity-80`}
+          />
+        </div>
         
         <div className={`grid ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-2'} gap-6`}>
           <GlassCard delay={200}>
@@ -395,8 +432,12 @@ const SponsorshipPresentation = () => {
             </div>
             
             <div className="border-t border-white/20 pt-6">
-              <div className="flex items-center justify-center space-x-4 mb-4">
-                <Mic className={`${isMobile ? 'w-10 h-10' : 'w-16 h-16'} text-white animate-pulse`} />
+              <div className="flex items-center justify-center space-x-6 mb-4">
+                <img 
+                  src={juntifyLogo} 
+                  alt="Juntify Logo" 
+                  className={`${isMobile ? 'w-12 h-12' : 'w-20 h-20'} object-contain drop-shadow-lg animate-pulse`}
+                />
                 <span className={`${isMobile ? 'text-3xl' : 'text-5xl'} font-bold text-white`}>
                   Juntify
                 </span>
