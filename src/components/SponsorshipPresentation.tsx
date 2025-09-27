@@ -1,4 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
+
+// Solución global para scroll en móvil
+if (typeof window !== 'undefined') {
+  document.documentElement.style.height = 'auto';
+  document.body.style.height = 'auto';
+  document.body.style.overflowY = 'auto';
+  document.body.style.setProperty('-webkit-overflow-scrolling', 'touch');
+}
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Users, Mic, Gift, Award, CheckCircle, ArrowRight, Sparkles, Building, ClipboardList, HeadphonesIcon, Shield, Menu } from 'lucide-react';
 import juntifyLogo from '@/assets/juntify-logo.png';
