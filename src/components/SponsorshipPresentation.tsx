@@ -442,9 +442,6 @@ const SponsorshipPresentation = () => {
           <div
             key={index}
             className={`${isMobile ? 'w-full min-h-screen' : 'w-full h-full flex-shrink-0'}`}
-            style={{
-              display: isMobile ? 'block' : (Math.abs(index - currentSlide) > 1 ? 'none' : 'block')
-            }}
           >
             {slide}
           </div>
