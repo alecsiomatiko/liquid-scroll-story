@@ -24,16 +24,16 @@ const SponsorshipPresentation = () => {
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      // Solo en desktop para navegación entre slides
+      // Only prevent default on desktop, allow mobile scroll
       if (!isMobile) {
         e.preventDefault();
-        if (isTransitioning) return;
+      }
+      if (isTransitioning) return;
 
-        if (e.deltaY > 0 && currentSlide < totalSlides - 1) {
-          goToSlide(currentSlide + 1);
-        } else if (e.deltaY < 0 && currentSlide > 0) {
-          goToSlide(currentSlide - 1);
-        }
+      if (e.deltaY > 0 && currentSlide < totalSlides - 1) {
+        goToSlide(currentSlide + 1);
+      } else if (e.deltaY < 0 && currentSlide > 0) {
+        goToSlide(currentSlide - 1);
       }
     };
 
@@ -550,30 +550,32 @@ const SponsorshipPresentation = () => {
   return (
     <div 
       ref={containerRef}
-      className="relative w-full min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900"
+      className={`relative w-full ${isMobile ? 'min-h-screen overflow-y-auto' : 'h-screen overflow-hidden'} bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900`}
       style={{
         background: `
           radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
           radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
           radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.2) 0%, transparent 50%),
           linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #1e293b 100%)
-        `,
-        overflowX: 'hidden',
-        overflowY: isMobile ? 'auto' : 'hidden'
+        `
       }}
     >
       {/* Dynamic slides container */}
       <div 
-        className={`${isMobile ? 'block' : 'flex transition-transform duration-500 ease-out'}`}
+        className={`flex transition-transform duration-500 ease-out ${isMobile ? 'flex-col' : ''}`}
         style={{ 
           transform: isMobile ? 'none' : `translateX(-${currentSlide * 100}%)`,
-          minHeight: '100vh'
+          minHeight: isMobile ? 'auto' : '100vh',
+          height: isMobile ? 'auto' : '100vh'
         }}
       >
         {slides.map((slide, index) => (
           <div
             key={index}
-            className={`${isMobile ? 'w-full' : 'w-full h-screen flex-shrink-0'} ${isMobile && index !== currentSlide ? 'hidden' : ''}`}
+            className={`${isMobile ? 'w-full min-h-screen' : 'w-full h-full flex-shrink-0'}`}
+            style={{
+              display: isMobile ? 'block' : (Math.abs(index - currentSlide) > 1 ? 'none' : 'block')
+            }}
           >
             {slide}
           </div>
