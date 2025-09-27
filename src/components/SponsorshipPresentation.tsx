@@ -91,31 +91,40 @@ const SponsorshipPresentation = () => {
   const GlassCard = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => (
     <div
       className={`
-        relative backdrop-blur-3xl bg-[rgba(255,255,255,0.04)] 
-        border border-[rgba(255,255,255,0.12)] rounded-3xl 
+        relative backdrop-blur-xl bg-[rgba(255,255,255,0.06)] 
+        border border-[rgba(255,255,255,0.15)] rounded-[2rem] 
         ${isMobile ? 'p-4 sm:p-6' : 'p-8'}
-        shadow-[0_8px_32px_rgba(59,130,246,0.3)]
-        hover:bg-[rgba(255,255,255,0.08)] hover:scale-[1.02] 
+        shadow-[0_8px_32px_rgba(59,130,246,0.2)] 
+        hover:shadow-[0_12px_40px_rgba(59,130,246,0.3)]
+        hover:bg-[rgba(255,255,255,0.08)] 
         transition-all duration-500 ease-out
-        animate-slide-in-right overflow-hidden
+        overflow-hidden group
+        animate-subtle-glow
         ${className}
       `}
-      style={{ animationDelay: `${delay}ms` }}
+      style={{ 
+        animationDelay: `${delay}ms`,
+        backgroundImage: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.02) 100%)'
+      }}
     >
-      {/* Subtle glass shine effect */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 animate-glass-shine" />
+      {/* Liquid glass shimmer effect */}
+      <div className="absolute inset-0 overflow-hidden rounded-[2rem]">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-glass-shimmer" />
       </div>
+      
+      {/* Inner glow effect */}
+      <div className="absolute inset-[1px] rounded-[calc(2rem-1px)] bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+      
       {children}
     </div>
   );
 
   const NeonOrb = ({ size = "w-32 h-32", position = "top-10 right-10", delay = 0, intensity = "normal" }: { size?: string; position?: string; delay?: number; intensity?: "normal" | "high" }) => (
     <div
-      className={`absolute ${position} ${size} rounded-full animate-parallax-float ${isMobile ? 'opacity-30' : 'opacity-50'}`}
+      className={`absolute ${position} ${size} rounded-full animate-liquid-float ${isMobile ? 'opacity-25' : 'opacity-40'}`}
       style={{ animationDelay: `${delay}s` }}
     >
-      <div className={`w-full h-full rounded-full bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 ${intensity === "high" ? "opacity-60" : "opacity-40"} blur-3xl transition-opacity duration-500`} />
+      <div className={`w-full h-full rounded-full bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 ${intensity === "high" ? "opacity-50" : "opacity-30"} blur-3xl`} />
     </div>
   );
 
@@ -419,21 +428,13 @@ const SponsorshipPresentation = () => {
               a todos los participantes del Congreso BNI.
             </p>
             
-            <div className={`flex ${isMobile ? 'flex-col' : 'flex-col sm:flex-row'} gap-4 justify-center`}>
+            <div className="flex justify-center">
               <Button 
                 size={isMobile ? "default" : "lg"} 
-                className={`${isMobile ? 'text-lg px-8 py-4' : 'text-xl px-12 py-6'} bg-white/20 hover:bg-white/30 border-0 text-white backdrop-blur-sm transition-all duration-300`}
+                className={`${isMobile ? 'text-lg px-8 py-4' : 'text-xl px-12 py-6'} bg-white/20 hover:bg-white/30 border-0 text-white backdrop-blur-sm transition-all duration-300 rounded-2xl`}
                 onClick={openWhatsApp}
               >
                 Aceptar propuesta
-              </Button>
-              <Button 
-                variant="outline" 
-                size={isMobile ? "default" : "lg"} 
-                className={`${isMobile ? 'text-lg px-8 py-4' : 'text-xl px-12 py-6'} border-white/30 text-white hover:bg-white/10 transition-all duration-300`}
-                onClick={openWhatsApp}
-              >
-                Programar reunión
               </Button>
             </div>
             
