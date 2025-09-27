@@ -24,7 +24,10 @@ const SponsorshipPresentation = () => {
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
+      // Only prevent default on desktop, allow mobile scroll
+      if (!isMobile) {
+        e.preventDefault();
+      }
       if (isTransitioning) return;
 
       if (e.deltaY > 0 && currentSlide < totalSlides - 1) {
@@ -44,36 +47,45 @@ const SponsorshipPresentation = () => {
       }
     };
 
-    // Touch handling for mobile
+    // Enhanced touch handling for mobile with vertical scroll support
     let touchStartX = 0;
     let touchEndX = 0;
+    let touchStartY = 0;
+    let touchEndY = 0;
     
     const handleTouchStart = (e: TouchEvent) => {
       touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
     };
     
     const handleTouchEnd = (e: TouchEvent) => {
       touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
       if (isTransitioning) return;
       
-      const difference = touchStartX - touchEndX;
-      const threshold = 50;
+      const differenceX = touchStartX - touchEndX;
+      const differenceY = touchStartY - touchEndY;
+      const threshold = 75; // Increased threshold for better UX
       
-      if (Math.abs(difference) > threshold) {
-        if (difference > 0 && currentSlide < totalSlides - 1) {
+      // Only handle horizontal swipes if they're more pronounced than vertical
+      if (Math.abs(differenceX) > Math.abs(differenceY) && Math.abs(differenceX) > threshold) {
+        if (differenceX > 0 && currentSlide < totalSlides - 1) {
           // Swipe left - next slide
           goToSlide(currentSlide + 1);
-        } else if (difference < 0 && currentSlide > 0) {
+        } else if (differenceX < 0 && currentSlide > 0) {
           // Swipe right - previous slide
           goToSlide(currentSlide - 1);
         }
       }
     };
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
+    // Only add wheel listener on desktop
+    if (!isMobile) {
+      window.addEventListener('wheel', handleWheel, { passive: false });
+    }
     window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('touchstart', handleTouchStart);
-    window.addEventListener('touchend', handleTouchEnd);
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     return () => {
       window.removeEventListener('wheel', handleWheel);
@@ -81,13 +93,14 @@ const SponsorshipPresentation = () => {
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [currentSlide, isTransitioning]);
+  }, [currentSlide, isTransitioning, isMobile]);
 
   const goToSlide = (slideIndex: number) => {
     if (slideIndex < 0 || slideIndex >= totalSlides || isTransitioning) return;
     setIsTransitioning(true);
     setCurrentSlide(slideIndex);
-    setTimeout(() => setIsTransitioning(false), 1000);
+    // Reduced transition time for better performance
+    setTimeout(() => setIsTransitioning(false), 600);
   };
 
   const GlassCard = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => (
@@ -123,10 +136,10 @@ const SponsorshipPresentation = () => {
 
   const NeonOrb = ({ size = "w-32 h-32", position = "top-10 right-10", delay = 0, intensity = "normal" }: { size?: string; position?: string; delay?: number; intensity?: "normal" | "high" }) => (
     <div
-      className={`absolute ${position} ${size} rounded-full animate-liquid-float ${isMobile ? 'opacity-25' : 'opacity-40'}`}
+      className={`absolute ${position} ${size} rounded-full animate-liquid-float ${isMobile ? 'opacity-15' : 'opacity-30'} will-change-transform`}
       style={{ animationDelay: `${delay}s` }}
     >
-      <div className={`w-full h-full rounded-full bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 ${intensity === "high" ? "opacity-50" : "opacity-30"} blur-3xl`} />
+      <div className={`w-full h-full rounded-full bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 ${intensity === "high" ? "opacity-40" : "opacity-25"} blur-2xl`} />
     </div>
   );
 
