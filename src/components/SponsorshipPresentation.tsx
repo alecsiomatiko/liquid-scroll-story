@@ -8,7 +8,7 @@ const SponsorshipPresentation = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const totalSlides = 6;
+  const totalSlides = 5;
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -179,12 +179,12 @@ const SponsorshipPresentation = () => {
               />
               <span className={`${isMobile ? 'text-2xl' : 'text-4xl'} font-bold text-white`}>Juntify</span>
             </div>
-            <p className={`${isMobile ? 'text-base' : 'text-xl'} text-white/90`}>Plataforma de gestión de reuniones con IA</p>
+            <p className={`${isMobile ? 'text-base' : 'text-xl'} text-white/90`}>plataforma de gestión de reuniones con IA</p>
             <div className="border-t border-white/20 pt-4 space-y-3">
               <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>De: Ing. Alejandro Báez</p>
               <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Marca/Servicio: [Cero Uno Cero] – Juntify</p>
               <div className="flex items-center justify-center space-x-4 pt-2">
-                <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Para: Coordinación de Congreso</p>
+                <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Para: Coordinación de Congreso BNI</p>
                 <img 
                   src={bniLogo} 
                   alt="BNI San Luis Potosí" 
@@ -198,7 +198,7 @@ const SponsorshipPresentation = () => {
       </div>
     </div>,
 
-    // Slide 2: Lo que ofrecemos - Parte 1
+    // Slide 2: Lo que ofrecemos
     <div key={1} className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative overflow-auto">
       <NeonOrb size={isMobile ? "w-32 h-32" : "w-80 h-80"} position={isMobile ? "top-4 left-4" : "top-10 left-10"} delay={0.5} intensity="high" />
       <NeonOrb size={isMobile ? "w-24 h-24" : "w-72 h-72"} position={isMobile ? "bottom-10 right-4" : "bottom-20 right-20"} delay={2} intensity="high" />
@@ -208,14 +208,6 @@ const SponsorshipPresentation = () => {
           1. Lo que ofrecemos como patrocinadores
         </h2>
         
-        <div className="flex justify-center mb-8">
-          <img 
-            src={bniLogo} 
-            alt="BNI San Luis Potosí" 
-            className={`${isMobile ? 'w-24 h-20' : 'w-32 h-28'} object-contain opacity-80`}
-          />
-        </div>
-        
         <div className={`grid ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-2'} gap-6`}>
           <GlassCard delay={200}>
             <div className="space-y-4">
@@ -223,15 +215,15 @@ const SponsorshipPresentation = () => {
                 <Gift className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
                 <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Acceso gratuito a Juntify</h3>
               </div>
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90 mb-4`}>Para todos los asistentes del Congreso:</p>
+              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90 mb-4`}>para todos los asistentes del Congreso:</p>
               <div className="space-y-3">
                 {[
-                  "Cada ponencia quedará registrada en la plataforma",
-                  "Los asistentes podrán consultar la transcripción completa de lo dicho",
-                  "Se generarán resúmenes inteligentes con puntos clave y tareas recomendadas",
-                  "Los usuarios tendrán acceso al asistente de IA para hacer preguntas específicas sobre la ponencia",
-                  "Cada asistente podrá registrar hasta 5 reuniones propias de 30 minutos, como beneficio adicional",
-                  "Entrega de un PDF personalizado con el resumen y puntos clave de cada ponencia"
+                  "Cada ponencia quedará registrada en la plataforma.",
+                  "Los asistentes podrán consultar la transcripción completa de lo dicho.",
+                  "Se generarán resúmenes inteligentes con puntos clave y tareas recomendadas.",
+                  "Los usuarios tendrán acceso al asistente de IA para hacer preguntas específicas sobre la ponencia.",
+                  "Cada asistente podrá registrar hasta 5 reuniones propias de 30 minutos, como beneficio adicional.",
+                  "Entrega de un PDF personalizado con el resumen y puntos clave de cada ponencia."
                 ].map((item, index) => (
                   <div key={index} className="flex items-start space-x-2">
                     <CheckCircle className={`${isMobile ? 'w-4 h-4' : 'w-6 h-6'} text-white mt-0.5 flex-shrink-0`} />
@@ -248,12 +240,12 @@ const SponsorshipPresentation = () => {
                 <Shield className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
                 <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Infraestructura técnica</h3>
               </div>
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90 mb-4`}>Cubierta al 100% por Juntify:</p>
+              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90 mb-4`}>cubierta al 100% por Juntify:</p>
               <div className="space-y-3">
                 {[
-                  "Servidores y almacenamiento",
-                  "Consumo de IA (API OpenAI)",
-                  "Soporte técnico durante el evento"
+                  "Servidores y almacenamiento.",
+                  "Consumo de IA (API OpenAI).",
+                  "Soporte técnico durante el evento."
                 ].map((item, index) => (
                   <div key={index} className="flex items-start space-x-2">
                     <CheckCircle className={`${isMobile ? 'w-4 h-4' : 'w-6 h-6'} text-white mt-0.5 flex-shrink-0`} />
@@ -265,16 +257,16 @@ const SponsorshipPresentation = () => {
               <div className={`mt-6 pt-4 border-t border-white/20`}>
                 <div className="flex items-center space-x-3 mb-3">
                   <Award className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'} text-white`} />
-                  <h4 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-white`}>Presencia de marca durante el Congreso</h4>
+                  <h4 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-white`}>Presencia de marca durante el Congreso:</h4>
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-start space-x-2">
                     <CheckCircle className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'} text-white mt-0.5 flex-shrink-0`} />
-                    <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-base'}`}>Inclusión de la marca Juntify como patrocinador oficial</span>
+                    <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-base'}`}>Inclusión de la marca Juntify como patrocinador oficial.</span>
                   </div>
                   <div className="flex items-start space-x-2">
                     <CheckCircle className={`${isMobile ? 'w-4 h-4' : 'w-5 h-5'} text-white mt-0.5 flex-shrink-0`} />
-                    <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-base'}`}>Participación en la agenda con una presentación de 20 minutos sobre la plataforma</span>
+                    <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-base'}`}>Participación en la agenda con una presentación de 20 minutos sobre la plataforma.</span>
                   </div>
                 </div>
               </div>
@@ -294,15 +286,7 @@ const SponsorshipPresentation = () => {
           2. Lo que solicitamos a cambio
         </h2>
         
-        <div className="flex justify-center mb-8">
-          <img 
-            src={bniLogo} 
-            alt="BNI San Luis Potosí" 
-            className={`${isMobile ? 'w-24 h-20' : 'w-32 h-28'} object-contain opacity-80`}
-          />
-        </div>
-        
-        <div className={`grid ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-2'} gap-6`}>
+        <div className="space-y-6">
           <GlassCard delay={200}>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
@@ -311,9 +295,9 @@ const SponsorshipPresentation = () => {
               </div>
               <div className="space-y-3">
                 {[
-                  "Reconocimiento de patrocinio en materiales de comunicación y durante el evento (programa, menciones, banners, agradecimientos oficiales)",
-                  "Espacio de 20 minutos dentro del programa del Congreso para la presentación de Juntify",
-                  "Autorización para brindar acceso gratuito a los asistentes mediante un enlace único gestionado por el comité de coordinación"
+                  "Reconocimiento de patrocinio en materiales de comunicación y durante el evento (programa, menciones, banners, agradecimientos oficiales).",
+                  "Espacio de 20 minutos dentro del programa del Congreso para la presentación de Juntify.",
+                  "Autorización para brindar acceso gratuito a los asistentes mediante un enlace único gestionado por el comité de coordinación."
                 ].map((item, index) => (
                   <div key={index} className="flex items-start space-x-2">
                     <ArrowRight className={`${isMobile ? 'w-4 h-4' : 'w-6 h-6'} text-white mt-0.5 flex-shrink-0`} />
@@ -328,19 +312,14 @@ const SponsorshipPresentation = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Users className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
-                <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Acceso para nuestro staff</h3>
+                <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Acceso para 6 integrantes de nuestro staff</h3>
               </div>
-              <div className={`bg-white/10 rounded-2xl ${isMobile ? 'p-4' : 'p-6'} mb-4 border border-white/20`}>
-                <p className={`${isMobile ? 'text-2xl' : 'text-4xl'} font-bold text-white text-center`}>6 integrantes</p>
-                <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-center text-white/90`}>con playera corporativa</p>
-              </div>
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} font-semibold mb-3 text-white`}>Quienes estarán presentes para:</p>
+              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90 mb-3`}>quienes estarán presentes con playera corporativa para:</p>
               <div className="space-y-3">
                 {[
-                  "Orientar a los asistentes en el uso de la herramienta",
-                  "Atender dudas técnicas o de acceso",
-                  "Brindar soporte durante las ponencias",
-                  "Asegurar la calidad de la experiencia del usuario"
+                  "Orientar a los asistentes en el uso de la herramienta.",
+                  "Atender dudas técnicas o de acceso.",
+                  "Facilitar contactos B2B con otros participantes, de manera discreta y sin instalación de banners ni publicidad invasiva."
                 ].map((item, index) => (
                   <div key={index} className="flex items-start space-x-2">
                     <ArrowRight className={`${isMobile ? 'w-4 h-4' : 'w-6 h-6'} text-white mt-0.5 flex-shrink-0`} />
@@ -354,195 +333,85 @@ const SponsorshipPresentation = () => {
       </div>
     </div>,
 
-    // Slide 4: Valor propuesto
+    // Slide 4: Beneficios
     <div key={3} className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative overflow-auto">
       <NeonOrb size={isMobile ? "w-32 h-32" : "w-80 h-80"} position={isMobile ? "top-6 right-6" : "top-12 right-24"} delay={0.8} intensity="high" />
       <NeonOrb size={isMobile ? "w-28 h-28" : "w-72 h-72"} position={isMobile ? "bottom-12 left-6" : "bottom-24 left-48"} delay={2.2} intensity="high" />
       
       <div className={`${isMobile ? 'max-w-sm' : 'max-w-7xl'} w-full space-y-8 relative z-10`}>
         <h2 className={`${isMobile ? 'text-3xl' : 'text-6xl'} font-bold text-center text-white mb-8 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
-          3. Valor del intercambio
+          3. Beneficios para el Congreso y los asistentes
         </h2>
         
-        <div className="flex justify-center mb-8">
-          <img 
-            src={bniLogo} 
-            alt="BNI San Luis Potosí" 
-            className={`${isMobile ? 'w-24 h-20' : 'w-32 h-28'} object-contain opacity-80`}
-          />
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Primera Card - Estimación monetaria */}
-          <GlassCard delay={200}>
-            <div className="space-y-6">
-              <div className="flex items-center space-x-3">
-                <Building className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
-                <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Estimación monetaria del aporte</h3>
-              </div>
-              
-              <div className="space-y-4">
-                <div className={`bg-white/10 rounded-xl ${isMobile ? 'p-4' : 'p-6'} border border-white/20`}>
-                  <h4 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-white mb-4`}>Costos operativos cubiertos:</h4>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>Infraestructura de servidor</span>
-                      <span className={`font-bold text-white ${isMobile ? 'text-sm' : 'text-lg'}`}>$3,000</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>Consumo de IA (para 200 personas)</span>
-                      <span className={`font-bold text-white ${isMobile ? 'text-sm' : 'text-lg'}`}>$8,000</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>Soporte técnico especializado</span>
-                      <span className={`font-bold text-white ${isMobile ? 'text-sm' : 'text-lg'}`}>$5,000</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>Staff de 6 personas (2 días)</span>
-                      <span className={`font-bold text-white ${isMobile ? 'text-sm' : 'text-lg'}`}>$12,000</span>
-                    </div>
-                    <div className="border-t border-white/30 pt-3 mt-3">
-                      <div className="flex justify-between items-center">
-                        <span className={`text-white font-bold ${isMobile ? 'text-lg' : 'text-xl'}`}>Total estimado:</span>
-                        <span className={`font-black text-white ${isMobile ? 'text-xl' : 'text-2xl'}`}>$28,000 MXN</span>
-                      </div>
-                    </div>
-                  </div>
+        <GlassCard delay={200}>
+          <div className="space-y-6">
+            <div className="flex items-center space-x-3">
+              <Sparkles className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
+              <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Beneficios únicos</h3>
+            </div>
+            
+            <div className="space-y-4">
+              {[
+                "Los asistentes obtendrán no solo la experiencia en vivo, sino también un recurso práctico y duradero.",
+                "El Congreso se distinguirá como pionero en integrar inteligencia artificial para capitalizar el aprendizaje.",
+                "El comité organizador contará con un patrocinio en especie de alto valor tecnológico, sin requerir inversión adicional.",
+                "Mayor interacción y soporte inmediato para los asistentes, gracias a la presencia del equipo de Juntify."
+              ].map((item, index) => (
+                <div key={index} className="flex items-start space-x-2">
+                  <CheckCircle className={`${isMobile ? 'w-4 h-4' : 'w-6 h-6'} text-white mt-0.5 flex-shrink-0`} />
+                  <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>{item}</span>
                 </div>
-              </div>
+              ))}
             </div>
-          </GlassCard>
-
-          {/* Segunda Card - Beneficios adicionales */}
-          <GlassCard delay={400}>
-            <div className="space-y-6">
-              <div className="flex items-center space-x-3">
-                <Sparkles className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
-                <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Beneficios adicionales únicos</h3>
-              </div>
-              
-              <div className="space-y-4">
-                {[
-                  "Cada ponencia queda documentada digitalmente de forma automática",
-                  "Los asistentes pueden hacer follow-up personalizado con IA",
-                  "BNI San Luis obtiene un archivo digital permanente de todas las presentaciones",
-                  "Valor agregado post-evento: acceso durante 3 meses a todas las grabaciones y transcripciones",
-                  "Posicionamiento tecnológico del Capítulo como innovador",
-                  "Diferenciación competitiva frente a otros congresos regionales"
-                ].map((item, index) => (
-                  <div key={index} className="flex items-start space-x-2">
-                    <CheckCircle className={`${isMobile ? 'w-4 h-4' : 'w-6 h-6'} text-white mt-0.5 flex-shrink-0`} />
-                    <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>{item}</span>
-                  </div>
-                ))}
-              </div>
-              
-              <div className={`bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl ${isMobile ? 'p-4' : 'p-6'} border border-blue-500/30 mt-6`}>
-                <h4 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-white mb-2`}>Impacto esperado:</h4>
-                <p className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>
-                  Experiencia innovadora que posicionará al Congreso BNI San Luis como referente tecnológico
-                  en la región, con valor agregado medible y documentable para todos los participantes.
-                </p>
-              </div>
-            </div>
-          </GlassCard>
-        </div>
+          </div>
+        </GlassCard>
       </div>
     </div>,
 
-    // Slide 5: Call to Action
+    // Slide 5: Firma y contacto
     <div key={4} className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative overflow-auto">
       <NeonOrb size={isMobile ? "w-40 h-40" : "w-96 h-96"} position={isMobile ? "top-8 left-4" : "top-16 left-16"} delay={1} intensity="high" />
       <NeonOrb size={isMobile ? "w-28 h-28" : "w-80 h-80"} position={isMobile ? "bottom-16 right-4" : "bottom-32 right-24"} delay={2.8} intensity="high" />
       
       <div className={`${isMobile ? 'max-w-sm' : 'max-w-6xl'} w-full text-center space-y-8 relative z-10`}>
         <h2 className={`${isMobile ? 'text-3xl' : 'text-6xl'} font-bold text-white mb-8 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
-          4. Próximos pasos
+          Firma
         </h2>
         
         <GlassCard className="mx-auto" delay={300}>
           <div className="space-y-6">
-            <ClipboardList className={`${isMobile ? 'w-16 h-16' : 'w-24 h-24'} text-white mx-auto`} />
-            <h3 className={`${isMobile ? 'text-2xl' : 'text-4xl'} font-bold text-white`}>¿Te interesa esta propuesta?</h3>
-            <p className={`${isMobile ? 'text-lg' : 'text-2xl'} text-white/90`}>
-              Programemos una reunión para definir detalles operativos y fechas
-            </p>
+            <div className="flex items-center justify-center space-x-6">
+              <img 
+                src={juntifyLogo} 
+                alt="Juntify Logo" 
+                className={`${isMobile ? 'w-16 h-16' : 'w-24 h-24'} object-contain drop-shadow-lg animate-pulse`}
+              />
+            </div>
             
             <div className="space-y-4">
+              <h3 className={`${isMobile ? 'text-2xl' : 'text-4xl'} font-bold text-white`}>Ing. Alejandro Báez</h3>
+              <p className={`${isMobile ? 'text-lg' : 'text-2xl'} text-white/90`}>CEO – Cero Uno Cero</p>
+              <p className={`${isMobile ? 'text-lg' : 'text-2xl'} text-white/90`}>Desarrollador de Juntify</p>
+            </div>
+            
+            <div className="space-y-4 pt-4 border-t border-white/20">
               <Button 
                 onClick={openWhatsApp}
                 className={`${isMobile ? 'text-lg px-8 py-6' : 'text-2xl px-12 py-8'} bg-green-600 hover:bg-green-700 text-white font-bold rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300`}
               >
                 <div className="flex items-center space-x-3">
                   <HeadphonesIcon className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'}`} />
-                  <span>Programar reunión por WhatsApp</span>
+                  <span>Contactar por WhatsApp</span>
                 </div>
               </Button>
               
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/70`}>
-                Nos conectamos directo para afinar todos los detalles
-              </p>
+              <div className="space-y-2">
+                <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/70`}>WhatsApp: +52 444 700 1387</p>
+                <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/70`}>Email: alejandro@juntify.com</p>
+              </div>
             </div>
           </div>
         </GlassCard>
-        
-        <GlassCard delay={500}>
-          <div className="space-y-4">
-            <h4 className={`${isMobile ? 'text-xl' : 'text-2xl'} font-bold text-white`}>Información de contacto:</h4>
-            <div className="space-y-2">
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Ing. Alejandro Báez</p>
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Fundador de Juntify</p>
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>WhatsApp: +52 444 700 1387</p>
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Email: alejandro@juntify.com</p>
-            </div>
-          </div>
-        </GlassCard>
-      </div>
-    </div>,
-
-    // Slide 6: Cierre
-    <div key={5} className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative overflow-auto">
-      <NeonOrb size={isMobile ? "w-32 h-32" : "w-88 h-88"} position={isMobile ? "top-12 right-6" : "top-24 right-32"} delay={0.5} intensity="high" />
-      <NeonOrb size={isMobile ? "w-36 h-36" : "w-96 h-96"} position={isMobile ? "bottom-12 left-6" : "bottom-24 left-24"} delay={3} intensity="high" />
-      
-      <div className={`${isMobile ? 'max-w-sm' : 'max-w-6xl'} w-full text-center space-y-8 relative z-10`}>
-        <div className="space-y-6">
-          <h2 className={`${isMobile ? 'text-4xl' : 'text-8xl'} font-black text-white leading-tight drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
-            Gracias
-          </h2>
-          <h3 className={`${isMobile ? 'text-2xl' : 'text-4xl'} font-bold text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]`}>
-            por considerar nuestra propuesta
-          </h3>
-        </div>
-        
-        <GlassCard className="mx-auto" delay={400}>
-          <div className="space-y-6">
-            <div className="flex items-center justify-center space-x-8">
-              <img 
-                src={juntifyLogo} 
-                alt="Juntify Logo" 
-                className={`${isMobile ? 'w-20 h-20' : 'w-32 h-32'} object-contain drop-shadow-lg animate-pulse`}
-              />
-              <span className={`${isMobile ? 'text-4xl' : 'text-6xl'} font-bold text-white`}>💙</span>
-              <img 
-                src={bniLogo} 
-                alt="BNI San Luis Potosí" 
-                className={`${isMobile ? 'w-24 h-20' : 'w-36 h-32'} object-contain drop-shadow-lg animate-pulse`}
-              />
-            </div>
-            <p className={`${isMobile ? 'text-lg' : 'text-2xl'} text-white/90`}>
-              Juntos podemos crear una experiencia única
-            </p>
-            <p className={`${isMobile ? 'text-base' : 'text-xl'} text-white/80`}>
-              Innovación + Networking = Éxito
-            </p>
-          </div>
-        </GlassCard>
-        
-        <div className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/60 space-y-2`}>
-          <p>San Luis Potosí, 26 de septiembre de 2025</p>
-          <p>Propuesta de Intercambio de Patrocinio</p>
-        </div>
       </div>
     </div>
   ];
