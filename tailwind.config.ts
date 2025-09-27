@@ -80,41 +80,59 @@ export default {
             height: "0",
           },
         },
-        "fade-in-up": {
+        "slide-in-right": {
           "0%": {
             opacity: "0",
-            transform: "translateY(40px)"
+            transform: "translateX(100px) scale(0.95)"
           },
           "100%": {
             opacity: "1",
-            transform: "translateY(0)"
+            transform: "translateX(0) scale(1)"
           }
         },
-        "fade-in-scale": {
+        "slide-in-left": {
           "0%": {
             opacity: "0",
-            transform: "scale(0.95)"
+            transform: "translateX(-100px) scale(0.95)"
           },
           "100%": {
             opacity: "1",
-            transform: "scale(1)"
+            transform: "translateX(0) scale(1)"
           }
         },
-        "glass-glow": {
+        "parallax-float": {
           "0%, 100%": {
-            boxShadow: "0 0 20px rgba(59, 130, 246, 0.5)"
+            transform: "translateY(0px) rotate(0deg)"
           },
           "50%": {
-            boxShadow: "0 0 40px rgba(59, 130, 246, 0.8)"
+            transform: "translateY(-20px) rotate(1deg)"
+          }
+        },
+        "neon-glow": {
+          "0%, 100%": {
+            boxShadow: "0 0 20px rgba(139, 69, 255, 0.5), 0 0 40px rgba(139, 69, 255, 0.3), 0 0 60px rgba(139, 69, 255, 0.1)"
+          },
+          "50%": {
+            boxShadow: "0 0 30px rgba(139, 69, 255, 0.8), 0 0 60px rgba(139, 69, 255, 0.5), 0 0 90px rgba(139, 69, 255, 0.2)"
+          }
+        },
+        "glass-shine": {
+          "0%": {
+            transform: "translateX(-100%)"
+          },
+          "100%": {
+            transform: "translateX(100%)"
           }
         }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in-up": "fade-in-up 0.8s ease-out",
-        "fade-in-scale": "fade-in-scale 0.6s ease-out",
-        "glass-glow": "glass-glow 3s ease-in-out infinite",
+        "slide-in-right": "slide-in-right 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+        "slide-in-left": "slide-in-left 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+        "parallax-float": "parallax-float 6s ease-in-out infinite",
+        "neon-glow": "neon-glow 3s ease-in-out infinite",
+        "glass-shine": "glass-shine 3s ease-in-out infinite",
       },
     },
   },
