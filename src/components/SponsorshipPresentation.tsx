@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, Users, Zap, Gift, Award, CheckCircle, ArrowRight, Sparkles, Building, ClipboardList, HeadphonesIcon, Shield, Menu } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Users, Mic, Gift, Award, CheckCircle, ArrowRight, Sparkles, Building, ClipboardList, HeadphonesIcon, Shield, Menu } from 'lucide-react';
 
 const SponsorshipPresentation = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -85,7 +85,7 @@ const SponsorshipPresentation = () => {
     if (slideIndex < 0 || slideIndex >= totalSlides || isTransitioning) return;
     setIsTransitioning(true);
     setCurrentSlide(slideIndex);
-    setTimeout(() => setIsTransitioning(false), 800);
+    setTimeout(() => setIsTransitioning(false), 1000);
   };
 
   const GlassCard = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => (
@@ -95,8 +95,8 @@ const SponsorshipPresentation = () => {
         border border-[rgba(255,255,255,0.12)] rounded-3xl 
         ${isMobile ? 'p-4 sm:p-6' : 'p-8'}
         shadow-[0_8px_32px_rgba(59,130,246,0.3)]
-        hover:bg-[rgba(255,255,255,0.08)] hover:scale-105 
-        transition-all duration-700 ease-out
+        hover:bg-[rgba(255,255,255,0.08)] hover:scale-[1.02] 
+        transition-all duration-500 ease-out
         animate-slide-in-right overflow-hidden
         ${className}
       `}
@@ -115,9 +115,14 @@ const SponsorshipPresentation = () => {
       className={`absolute ${position} ${size} rounded-full animate-parallax-float ${isMobile ? 'opacity-30' : 'opacity-50'}`}
       style={{ animationDelay: `${delay}s` }}
     >
-      <div className={`w-full h-full rounded-full bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 animate-neon-glow ${intensity === "high" ? "opacity-60" : "opacity-40"} blur-3xl`} />
+      <div className={`w-full h-full rounded-full bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 ${intensity === "high" ? "opacity-60" : "opacity-40"} blur-3xl transition-opacity duration-500`} />
     </div>
   );
+
+  const openWhatsApp = () => {
+    const message = encodeURIComponent("Hola, me interesa la propuesta de patrocinio de Juntify para el Congreso BNI. Me gustaría programar una reunión para discutir los detalles.");
+    window.open(`https://wa.me/524447001387?text=${message}`, '_blank');
+  };
 
   const slides = [
     // Slide 1: Título Principal
@@ -146,9 +151,9 @@ const SponsorshipPresentation = () => {
           <div className="space-y-4">
             <p className={`${isMobile ? 'text-lg' : 'text-2xl'} text-white`}>San Luis Potosí, 26 de septiembre de 2025</p>
             <div className="flex items-center justify-center space-x-4">
-              <Zap className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
+              <Mic className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
               <span className={`${isMobile ? 'text-2xl' : 'text-4xl'} font-bold text-white`}>Juntify</span>
-              <Zap className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
+              <Mic className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
             </div>
             <p className={`${isMobile ? 'text-base' : 'text-xl'} text-white/90`}>Plataforma de gestión de reuniones con IA</p>
             <div className="border-t border-white/20 pt-4 space-y-2">
@@ -314,7 +319,7 @@ const SponsorshipPresentation = () => {
           <GlassCard delay={200}>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <Zap className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
+                <Mic className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
                 <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Experiencia duradera</h3>
               </div>
               <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>
@@ -382,7 +387,7 @@ const SponsorshipPresentation = () => {
             
             <div className="border-t border-white/20 pt-6">
               <div className="flex items-center justify-center space-x-4 mb-4">
-                <Zap className={`${isMobile ? 'w-10 h-10' : 'w-16 h-16'} text-white animate-pulse`} />
+                <Mic className={`${isMobile ? 'w-10 h-10' : 'w-16 h-16'} text-white animate-pulse`} />
                 <span className={`${isMobile ? 'text-3xl' : 'text-5xl'} font-bold text-white`}>
                   Juntify
                 </span>
@@ -415,10 +420,19 @@ const SponsorshipPresentation = () => {
             </p>
             
             <div className={`flex ${isMobile ? 'flex-col' : 'flex-col sm:flex-row'} gap-4 justify-center`}>
-              <Button size={isMobile ? "default" : "lg"} className={`${isMobile ? 'text-lg px-8 py-4' : 'text-xl px-12 py-6'} bg-white/20 hover:bg-white/30 border-0 text-white backdrop-blur-sm`}>
+              <Button 
+                size={isMobile ? "default" : "lg"} 
+                className={`${isMobile ? 'text-lg px-8 py-4' : 'text-xl px-12 py-6'} bg-white/20 hover:bg-white/30 border-0 text-white backdrop-blur-sm transition-all duration-300`}
+                onClick={openWhatsApp}
+              >
                 Aceptar propuesta
               </Button>
-              <Button variant="outline" size={isMobile ? "default" : "lg"} className={`${isMobile ? 'text-lg px-8 py-4' : 'text-xl px-12 py-6'} border-white/30 text-white hover:bg-white/10`}>
+              <Button 
+                variant="outline" 
+                size={isMobile ? "default" : "lg"} 
+                className={`${isMobile ? 'text-lg px-8 py-4' : 'text-xl px-12 py-6'} border-white/30 text-white hover:bg-white/10 transition-all duration-300`}
+                onClick={openWhatsApp}
+              >
                 Programar reunión
               </Button>
             </div>
@@ -450,10 +464,10 @@ const SponsorshipPresentation = () => {
       <div className="absolute top-0 left-1/4 w-0.5 h-full bg-gradient-to-b from-blue-400/10 via-transparent to-cyan-400/10 transform rotate-12 animate-pulse" />
       <div className="absolute top-0 right-1/3 w-0.5 h-full bg-gradient-to-b from-cyan-400/8 via-transparent to-blue-400/8 transform -rotate-12 animate-pulse" style={{ animationDelay: '1s' }} />
       
-      {/* Slides container with horizontal transition */}
+      {/* Slides container with smooth horizontal transition */}
       <div 
         ref={containerRef}
-        className="h-full transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] flex"
+        className="h-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] flex will-change-transform"
         style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
       >
         {slides.map((slide, index) => (
