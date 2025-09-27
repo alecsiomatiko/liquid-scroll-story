@@ -8,47 +8,47 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 240 20% 5%;
+    --background: 220 30% 8%;
     --foreground: 0 0% 100%;
 
-    --card: 240 20% 5%;
+    --card: 220 30% 8%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 240 20% 5%;
+    --popover: 220 30% 8%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 280 100% 70%;
+    --primary: 220 100% 70%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 260 80% 60%;
+    --secondary: 240 80% 60%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 10% 15%;
+    --muted: 220 20% 15%;
     --muted-foreground: 0 0% 90%;
 
-    --accent: 300 100% 50%;
+    --accent: 200 100% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 280 50% 60%;
-    --input: 240 10% 15%;
-    --ring: 280 100% 70%;
+    --border: 220 50% 50%;
+    --input: 220 20% 15%;
+    --ring: 220 100% 70%;
 
     --radius: 1rem;
 
-    /* Ultra transparent glass effect */
-    --glass-bg: 255 255 255 / 0.03;
-    --glass-border: 255 255 255 / 0.1;
-    --glass-shadow: 0 8px 32px 0 rgba(139, 69, 255, 0.6);
-    --glass-shadow-strong: 0 25px 80px 0 rgba(139, 69, 255, 0.8);
+    /* Elegant blue glass effect */
+    --glass-bg: 255 255 255 / 0.04;
+    --glass-border: 255 255 255 / 0.12;
+    --glass-shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.3);
+    --glass-shadow-strong: 0 25px 80px 0 rgba(59, 130, 246, 0.4);
     
-    /* Intense neon gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(280 100% 70%) 0%, hsl(260 100% 60%) 30%, hsl(300 100% 80%) 70%, hsl(320 100% 70%) 100%);
-    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-    --gradient-neon: linear-gradient(45deg, hsl(280 100% 70%), hsl(300 100% 80%), hsl(260 100% 60%), hsl(320 100% 70%));
-    --gradient-bg: radial-gradient(ellipse at center, hsl(280 80% 25%) 0%, hsl(260 90% 15%) 30%, hsl(300 100% 20%) 60%, hsl(240 100% 8%) 100%);
+    /* Elegant blue gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(220 100% 70%) 0%, hsl(240 100% 60%) 30%, hsl(200 100% 80%) 70%, hsl(180 100% 70%) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    --gradient-neon: linear-gradient(45deg, hsl(220 100% 70%), hsl(200 100% 80%), hsl(240 100% 60%), hsl(180 100% 70%));
+    --gradient-bg: radial-gradient(ellipse at center, hsl(220 60% 20%) 0%, hsl(240 80% 12%) 30%, hsl(200 90% 8%) 60%, hsl(220 100% 5%) 100%);
 
     --sidebar-background: 0 0% 98%;
 
@@ -68,33 +68,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 240 20% 5%;
+    --background: 220 30% 8%;
     --foreground: 0 0% 100%;
 
-    --card: 240 20% 5%;
+    --card: 220 30% 8%;
     --card-foreground: 0 0% 100%;
 
-    --popover: 240 20% 5%;
+    --popover: 220 30% 8%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 280 100% 70%;
+    --primary: 220 100% 70%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 260 80% 60%;
+    --secondary: 240 80% 60%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 10% 15%;
+    --muted: 220 20% 15%;
     --muted-foreground: 0 0% 90%;
 
-    --accent: 300 100% 50%;
+    --accent: 200 100% 60%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 280 50% 60%;
-    --input: 240 10% 15%;
-    --ring: 280 100% 70%;
+    --border: 220 50% 50%;
+    --input: 220 20% 15%;
+    --ring: 220 100% 70%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
