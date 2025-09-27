@@ -1,12 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react';
-
-// Solución global para scroll en móvil
-if (typeof window !== 'undefined') {
-  document.documentElement.style.height = 'auto';
-  document.body.style.height = 'auto';
-  document.body.style.overflowY = 'auto';
-  document.body.style.setProperty('-webkit-overflow-scrolling', 'touch');
-}
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Users, Mic, Gift, Award, CheckCircle, ArrowRight, Sparkles, Building, ClipboardList, HeadphonesIcon, Shield, Menu } from 'lucide-react';
 import juntifyLogo from '@/assets/juntify-logo.png';
@@ -32,16 +24,16 @@ const SponsorshipPresentation = () => {
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
-      // Only prevent default on desktop, allow mobile scroll
+      // Solo en desktop para navegación entre slides
       if (!isMobile) {
         e.preventDefault();
-      }
-      if (isTransitioning) return;
+        if (isTransitioning) return;
 
-      if (e.deltaY > 0 && currentSlide < totalSlides - 1) {
-        goToSlide(currentSlide + 1);
-      } else if (e.deltaY < 0 && currentSlide > 0) {
-        goToSlide(currentSlide - 1);
+        if (e.deltaY > 0 && currentSlide < totalSlides - 1) {
+          goToSlide(currentSlide + 1);
+        } else if (e.deltaY < 0 && currentSlide > 0) {
+          goToSlide(currentSlide - 1);
+        }
       }
     };
 
@@ -55,7 +47,7 @@ const SponsorshipPresentation = () => {
       }
     };
 
-    // Enhanced touch handling for mobile with vertical scroll support
+    // Enhanced touch handling for mobile
     let touchStartX = 0;
     let touchEndX = 0;
     let touchStartY = 0;
@@ -73,21 +65,19 @@ const SponsorshipPresentation = () => {
       
       const differenceX = touchStartX - touchEndX;
       const differenceY = touchStartY - touchEndY;
-      const threshold = 75; // Increased threshold for better UX
+      const threshold = 75;
       
-      // Only handle horizontal swipes if they're more pronounced than vertical
+      // Solo navegación horizontal en móvil
       if (Math.abs(differenceX) > Math.abs(differenceY) && Math.abs(differenceX) > threshold) {
         if (differenceX > 0 && currentSlide < totalSlides - 1) {
-          // Swipe left - next slide
           goToSlide(currentSlide + 1);
         } else if (differenceX < 0 && currentSlide > 0) {
-          // Swipe right - previous slide
           goToSlide(currentSlide - 1);
         }
       }
     };
 
-    // Only add wheel listener on desktop
+    // Solo agregar wheel listener en desktop
     if (!isMobile) {
       window.addEventListener('wheel', handleWheel, { passive: false });
     }
@@ -107,7 +97,6 @@ const SponsorshipPresentation = () => {
     if (slideIndex < 0 || slideIndex >= totalSlides || isTransitioning) return;
     setIsTransitioning(true);
     setCurrentSlide(slideIndex);
-    // Reduced transition time for better performance
     setTimeout(() => setIsTransitioning(false), 600);
   };
 
@@ -158,7 +147,7 @@ const SponsorshipPresentation = () => {
 
   const slides = [
     // Slide 1: Título Principal
-    <div key={0} className={`min-h-screen flex items-center justify-center ${isMobile ? 'p-4' : 'p-8'} relative`}>
+    <div key={0} className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative overflow-auto">
       <NeonOrb size={isMobile ? "w-48 h-48" : "w-96 h-96"} position={isMobile ? "top-10 right-4" : "top-20 right-20"} delay={0} intensity="high" />
       <NeonOrb size={isMobile ? "w-32 h-32" : "w-80 h-80"} position={isMobile ? "bottom-20 left-4" : "bottom-32 left-16"} delay={1.5} intensity="high" />
       <NeonOrb size={isMobile ? "w-24 h-24" : "w-64 h-64"} position={isMobile ? "top-32 left-8" : "top-40 left-32"} delay={3} intensity="high" />
@@ -210,7 +199,7 @@ const SponsorshipPresentation = () => {
     </div>,
 
     // Slide 2: Lo que ofrecemos - Parte 1
-    <div key={1} className={`min-h-screen flex items-center justify-center ${isMobile ? 'p-4' : 'p-8'} relative`}>
+    <div key={1} className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative overflow-auto">
       <NeonOrb size={isMobile ? "w-32 h-32" : "w-80 h-80"} position={isMobile ? "top-4 left-4" : "top-10 left-10"} delay={0.5} intensity="high" />
       <NeonOrb size={isMobile ? "w-24 h-24" : "w-72 h-72"} position={isMobile ? "bottom-10 right-4" : "bottom-20 right-20"} delay={2} intensity="high" />
       
@@ -296,7 +285,7 @@ const SponsorshipPresentation = () => {
     </div>,
 
     // Slide 3: Lo que solicitamos
-    <div key={2} className={`min-h-screen flex items-center justify-center ${isMobile ? 'p-4' : 'p-8'} relative`}>
+    <div key={2} className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative overflow-auto">
       <NeonOrb size={isMobile ? "w-28 h-28" : "w-72 h-72"} position={isMobile ? "top-8 right-4" : "top-16 right-16"} delay={1} intensity="high" />
       <NeonOrb size={isMobile ? "w-32 h-32" : "w-88 h-88"} position={isMobile ? "bottom-8 left-4" : "bottom-16 left-32"} delay={2.5} intensity="high" />
       
@@ -350,7 +339,8 @@ const SponsorshipPresentation = () => {
                 {[
                   "Orientar a los asistentes en el uso de la herramienta",
                   "Atender dudas técnicas o de acceso",
-                  "Facilitar contactos B2B con otros participantes, de manera discreta y sin instalación de banners ni publicidad invasiva"
+                  "Brindar soporte durante las ponencias",
+                  "Asegurar la calidad de la experiencia del usuario"
                 ].map((item, index) => (
                   <div key={index} className="flex items-start space-x-2">
                     <ArrowRight className={`${isMobile ? 'w-4 h-4' : 'w-6 h-6'} text-white mt-0.5 flex-shrink-0`} />
@@ -364,14 +354,14 @@ const SponsorshipPresentation = () => {
       </div>
     </div>,
 
-    // Slide 4: Beneficios
-    <div key={3} className={`min-h-screen flex items-center justify-center ${isMobile ? 'p-4' : 'p-8'} relative`}>
-      <NeonOrb size={isMobile ? "w-24 h-24" : "w-64 h-64"} position={isMobile ? "top-10 left-4" : "top-20 left-20"} delay={0.8} intensity="high" />
-      <NeonOrb size={isMobile ? "w-36 h-36" : "w-96 h-96"} position={isMobile ? "bottom-4 right-4" : "bottom-10 right-10"} delay={2.2} intensity="high" />
+    // Slide 4: Valor propuesto
+    <div key={3} className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative overflow-auto">
+      <NeonOrb size={isMobile ? "w-32 h-32" : "w-80 h-80"} position={isMobile ? "top-6 right-6" : "top-12 right-24"} delay={0.8} intensity="high" />
+      <NeonOrb size={isMobile ? "w-28 h-28" : "w-72 h-72"} position={isMobile ? "bottom-12 left-6" : "bottom-24 left-48"} delay={2.2} intensity="high" />
       
       <div className={`${isMobile ? 'max-w-sm' : 'max-w-7xl'} w-full space-y-8 relative z-10`}>
         <h2 className={`${isMobile ? 'text-3xl' : 'text-6xl'} font-bold text-center text-white mb-8 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
-          3. Beneficios para el Congreso y los asistentes
+          3. Valor del intercambio
         </h2>
         
         <div className="flex justify-center mb-8">
@@ -382,179 +372,228 @@ const SponsorshipPresentation = () => {
           />
         </div>
         
-        <div className={`grid ${isMobile ? 'grid-cols-1' : 'lg:grid-cols-2'} gap-6`}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Primera Card - Estimación monetaria */}
           <GlassCard delay={200}>
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div className="flex items-center space-x-3">
-                <Mic className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
-                <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Experiencia duradera</h3>
+                <Building className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
+                <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Estimación monetaria del aporte</h3>
               </div>
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>
-                Los asistentes obtendrán no solo la experiencia en vivo, sino también un recurso práctico y duradero.
-              </p>
+              
+              <div className="space-y-4">
+                <div className={`bg-white/10 rounded-xl ${isMobile ? 'p-4' : 'p-6'} border border-white/20`}>
+                  <h4 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-white mb-4`}>Costos operativos cubiertos:</h4>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>Infraestructura de servidor</span>
+                      <span className={`font-bold text-white ${isMobile ? 'text-sm' : 'text-lg'}`}>$3,000</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>Consumo de IA (para 200 personas)</span>
+                      <span className={`font-bold text-white ${isMobile ? 'text-sm' : 'text-lg'}`}>$8,000</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>Soporte técnico especializado</span>
+                      <span className={`font-bold text-white ${isMobile ? 'text-sm' : 'text-lg'}`}>$5,000</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>Staff de 6 personas (2 días)</span>
+                      <span className={`font-bold text-white ${isMobile ? 'text-sm' : 'text-lg'}`}>$12,000</span>
+                    </div>
+                    <div className="border-t border-white/30 pt-3 mt-3">
+                      <div className="flex justify-between items-center">
+                        <span className={`text-white font-bold ${isMobile ? 'text-lg' : 'text-xl'}`}>Total estimado:</span>
+                        <span className={`font-black text-white ${isMobile ? 'text-xl' : 'text-2xl'}`}>$28,000 MXN</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </GlassCard>
 
+          {/* Segunda Card - Beneficios adicionales */}
           <GlassCard delay={400}>
-            <div className="space-y-4">
+            <div className="space-y-6">
               <div className="flex items-center space-x-3">
-                <Award className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
-                <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Pioneros en IA</h3>
+                <Sparkles className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
+                <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Beneficios adicionales únicos</h3>
               </div>
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>
-                El Congreso se distinguirá como pionero en integrar inteligencia artificial para capitalizar el aprendizaje.
-              </p>
-            </div>
-          </GlassCard>
-
-          <GlassCard delay={600}>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <Gift className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
-                <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Patrocinio de alto valor</h3>
+              
+              <div className="space-y-4">
+                {[
+                  "Cada ponencia queda documentada digitalmente de forma automática",
+                  "Los asistentes pueden hacer follow-up personalizado con IA",
+                  "BNI San Luis obtiene un archivo digital permanente de todas las presentaciones",
+                  "Valor agregado post-evento: acceso durante 3 meses a todas las grabaciones y transcripciones",
+                  "Posicionamiento tecnológico del Capítulo como innovador",
+                  "Diferenciación competitiva frente a otros congresos regionales"
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start space-x-2">
+                    <CheckCircle className={`${isMobile ? 'w-4 h-4' : 'w-6 h-6'} text-white mt-0.5 flex-shrink-0`} />
+                    <span className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>{item}</span>
+                  </div>
+                ))}
               </div>
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>
-                El comité organizador contará con un patrocinio en especie de alto valor tecnológico, sin requerir inversión adicional.
-              </p>
-            </div>
-          </GlassCard>
-
-          <GlassCard delay={800}>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <HeadphonesIcon className={`${isMobile ? 'w-8 h-8' : 'w-12 h-12'} text-white`} />
-                <h3 className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold text-white`}>Mayor interacción y soporte</h3>
+              
+              <div className={`bg-gradient-to-r from-blue-900/30 to-purple-900/30 rounded-xl ${isMobile ? 'p-4' : 'p-6'} border border-blue-500/30 mt-6`}>
+                <h4 className={`${isMobile ? 'text-lg' : 'text-xl'} font-bold text-white mb-2`}>Impacto esperado:</h4>
+                <p className={`text-white/90 ${isMobile ? 'text-sm' : 'text-lg'}`}>
+                  Experiencia innovadora que posicionará al Congreso BNI San Luis como referente tecnológico
+                  en la región, con valor agregado medible y documentable para todos los participantes.
+                </p>
               </div>
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>
-                Mayor interacción y soporte inmediato para los asistentes, gracias a la presencia del equipo de Juntify.
-              </p>
             </div>
           </GlassCard>
         </div>
       </div>
     </div>,
 
-    // Slide 5: Firma y contacto
-    <div key={4} className={`min-h-screen flex items-center justify-center ${isMobile ? 'p-4' : 'p-8'} relative`}>
-      <NeonOrb size={isMobile ? "w-32 h-32" : "w-80 h-80"} position={isMobile ? "top-16 left-4" : "top-32 left-16"} delay={1.2} intensity="high" />
-      <NeonOrb size={isMobile ? "w-24 h-24" : "w-60 h-60"} position={isMobile ? "bottom-16 right-4" : "bottom-32 right-32"} delay={2.8} intensity="high" />
+    // Slide 5: Call to Action
+    <div key={4} className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative overflow-auto">
+      <NeonOrb size={isMobile ? "w-40 h-40" : "w-96 h-96"} position={isMobile ? "top-8 left-4" : "top-16 left-16"} delay={1} intensity="high" />
+      <NeonOrb size={isMobile ? "w-28 h-28" : "w-80 h-80"} position={isMobile ? "bottom-16 right-4" : "bottom-32 right-24"} delay={2.8} intensity="high" />
       
-      <div className={`${isMobile ? 'max-w-sm' : 'max-w-5xl'} w-full space-y-8 relative z-10`}>
-        <h2 className={`${isMobile ? 'text-3xl' : 'text-6xl'} font-bold text-center text-white mb-8 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
-          Firma
+      <div className={`${isMobile ? 'max-w-sm' : 'max-w-6xl'} w-full text-center space-y-8 relative z-10`}>
+        <h2 className={`${isMobile ? 'text-3xl' : 'text-6xl'} font-bold text-white mb-8 drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
+          4. Próximos pasos
         </h2>
         
-        <GlassCard className={`${isMobile ? 'max-w-sm' : 'max-w-3xl'} mx-auto text-center`} delay={400}>
+        <GlassCard className="mx-auto" delay={300}>
           <div className="space-y-6">
-            <div className="space-y-3">
-              <h3 className={`${isMobile ? 'text-2xl' : 'text-4xl'} font-bold text-white`}>Ing. Alejandro Báez</h3>
-              <p className={`${isMobile ? 'text-lg' : 'text-2xl'} text-white font-semibold`}>CEO – Cero Uno Cero</p>
-              <p className={`${isMobile ? 'text-base' : 'text-xl'} text-white/90`}>Desarrollador de Juntify</p>
-            </div>
+            <ClipboardList className={`${isMobile ? 'w-16 h-16' : 'w-24 h-24'} text-white mx-auto`} />
+            <h3 className={`${isMobile ? 'text-2xl' : 'text-4xl'} font-bold text-white`}>¿Te interesa esta propuesta?</h3>
+            <p className={`${isMobile ? 'text-lg' : 'text-2xl'} text-white/90`}>
+              Programemos una reunión para definir detalles operativos y fechas
+            </p>
             
-            <div className="border-t border-white/20 pt-6">
-              <div className="flex items-center justify-center space-x-6 mb-4">
-                <img 
-                  src={juntifyLogo} 
-                  alt="Juntify Logo" 
-                  className={`${isMobile ? 'w-12 h-12' : 'w-20 h-20'} object-contain drop-shadow-lg animate-pulse`}
-                />
-                <span className={`${isMobile ? 'text-3xl' : 'text-5xl'} font-bold text-white`}>
-                  Juntify
-                </span>
-              </div>
-              <p className={`${isMobile ? 'text-base' : 'text-lg'} text-white/90 italic`}>
-                "Transformando reuniones con inteligencia artificial"
+            <div className="space-y-4">
+              <Button 
+                onClick={openWhatsApp}
+                className={`${isMobile ? 'text-lg px-8 py-6' : 'text-2xl px-12 py-8'} bg-green-600 hover:bg-green-700 text-white font-bold rounded-2xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300`}
+              >
+                <div className="flex items-center space-x-3">
+                  <HeadphonesIcon className={`${isMobile ? 'w-6 h-6' : 'w-8 h-8'}`} />
+                  <span>Programar reunión por WhatsApp</span>
+                </div>
+              </Button>
+              
+              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/70`}>
+                Nos conectamos directo para afinar todos los detalles
               </p>
+            </div>
+          </div>
+        </GlassCard>
+        
+        <GlassCard delay={500}>
+          <div className="space-y-4">
+            <h4 className={`${isMobile ? 'text-xl' : 'text-2xl'} font-bold text-white`}>Información de contacto:</h4>
+            <div className="space-y-2">
+              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Ing. Alejandro Báez</p>
+              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Fundador de Juntify</p>
+              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>WhatsApp: +52 444 700 1387</p>
+              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/90`}>Email: alejandro@juntify.com</p>
             </div>
           </div>
         </GlassCard>
       </div>
     </div>,
 
-    // Slide 6: Call to Action
-    <div key={5} className={`min-h-screen flex items-center justify-center ${isMobile ? 'p-4' : 'p-8'} relative`}>
-      <NeonOrb size={isMobile ? "w-40 h-40" : "w-96 h-96"} position={isMobile ? "top-4 right-4" : "top-10 right-10"} delay={0} intensity="high" />
-      <NeonOrb size={isMobile ? "w-32 h-32" : "w-80 h-80"} position={isMobile ? "bottom-4 left-4" : "bottom-10 left-10"} delay={1.5} intensity="high" />
-      <NeonOrb size={isMobile ? "w-24 h-24" : "w-64 h-64"} position={isMobile ? "top-32 left-16" : "top-40 left-40"} delay={3} intensity="high" />
+    // Slide 6: Cierre
+    <div key={5} className="min-h-screen flex items-center justify-center p-4 sm:p-8 relative overflow-auto">
+      <NeonOrb size={isMobile ? "w-32 h-32" : "w-88 h-88"} position={isMobile ? "top-12 right-6" : "top-24 right-32"} delay={0.5} intensity="high" />
+      <NeonOrb size={isMobile ? "w-36 h-36" : "w-96 h-96"} position={isMobile ? "bottom-12 left-6" : "bottom-24 left-24"} delay={3} intensity="high" />
       
-      <div className={`${isMobile ? 'max-w-sm' : 'max-w-6xl'} w-full space-y-8 text-center relative z-10`}>
-        <h2 className={`${isMobile ? 'text-4xl' : 'text-7xl'} font-bold text-white leading-tight drop-shadow-[0_0_40px_rgba(255,255,255,0.6)]`}>
-          ¿Listos para innovar juntos?
-        </h2>
+      <div className={`${isMobile ? 'max-w-sm' : 'max-w-6xl'} w-full text-center space-y-8 relative z-10`}>
+        <div className="space-y-6">
+          <h2 className={`${isMobile ? 'text-4xl' : 'text-8xl'} font-black text-white leading-tight drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]`}>
+            Gracias
+          </h2>
+          <h3 className={`${isMobile ? 'text-2xl' : 'text-4xl'} font-bold text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]`}>
+            por considerar nuestra propuesta
+          </h3>
+        </div>
         
-        <GlassCard className={`${isMobile ? 'max-w-sm' : 'max-w-4xl'} mx-auto`} delay={400}>
+        <GlassCard className="mx-auto" delay={400}>
           <div className="space-y-6">
-            <p className={`${isMobile ? 'text-lg' : 'text-2xl'} text-white/90 leading-relaxed`}>
-              Esperamos su respuesta para comenzar esta alianza estratégica que beneficiará 
-              a todos los participantes del Congreso BNI.
+            <div className="flex items-center justify-center space-x-8">
+              <img 
+                src={juntifyLogo} 
+                alt="Juntify Logo" 
+                className={`${isMobile ? 'w-20 h-20' : 'w-32 h-32'} object-contain drop-shadow-lg animate-pulse`}
+              />
+              <span className={`${isMobile ? 'text-4xl' : 'text-6xl'} font-bold text-white`}>💙</span>
+              <img 
+                src={bniLogo} 
+                alt="BNI San Luis Potosí" 
+                className={`${isMobile ? 'w-24 h-20' : 'w-36 h-32'} object-contain drop-shadow-lg animate-pulse`}
+              />
+            </div>
+            <p className={`${isMobile ? 'text-lg' : 'text-2xl'} text-white/90`}>
+              Juntos podemos crear una experiencia única
             </p>
-            
-            <div className="flex justify-center">
-              <Button 
-                size={isMobile ? "default" : "lg"} 
-                className={`${isMobile ? 'text-lg px-8 py-4' : 'text-xl px-12 py-6'} bg-white/20 hover:bg-white/30 border-0 text-white backdrop-blur-sm transition-all duration-300 rounded-2xl`}
-                onClick={openWhatsApp}
-              >
-                Aceptar propuesta
-              </Button>
-            </div>
-            
-            <div className="pt-4 border-t border-white/20">
-              <p className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/80`}>
-                Esta propuesta está sujeta a términos y condiciones que pueden discutirse en reunión posterior.
-              </p>
-            </div>
+            <p className={`${isMobile ? 'text-base' : 'text-xl'} text-white/80`}>
+              Innovación + Networking = Éxito
+            </p>
           </div>
         </GlassCard>
+        
+        <div className={`${isMobile ? 'text-sm' : 'text-lg'} text-white/60 space-y-2`}>
+          <p>San Luis Potosí, 26 de septiembre de 2025</p>
+          <p>Propuesta de Intercambio de Patrocinio</p>
+        </div>
       </div>
     </div>
   ];
 
   return (
-    <div className="fixed inset-0 overflow-hidden">
-      {/* Elegant blue background with subtle neon lights */}
-      <div className="absolute inset-0 bg-[var(--gradient-bg)]" />
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-800/20 via-cyan-800/10 to-blue-900/30" />
-      
-      {/* Subtle floating neon lights */}
-      <div className="absolute top-20 left-20 w-3 h-3 bg-blue-400 rounded-full animate-ping opacity-40" />
-      <div className="absolute top-40 right-32 w-2 h-2 bg-cyan-400 rounded-full animate-ping opacity-30" style={{ animationDelay: '1s' }} />
-      <div className="absolute bottom-32 left-32 w-2 h-2 bg-blue-300 rounded-full animate-ping opacity-35" style={{ animationDelay: '2s' }} />
-      <div className="absolute bottom-20 right-20 w-4 h-4 bg-cyan-300 rounded-full animate-ping opacity-25" style={{ animationDelay: '0.5s' }} />
-      
-      {/* Elegant light streaks */}
-      <div className="absolute top-0 left-1/4 w-0.5 h-full bg-gradient-to-b from-blue-400/10 via-transparent to-cyan-400/10 transform rotate-12 animate-pulse" />
-      <div className="absolute top-0 right-1/3 w-0.5 h-full bg-gradient-to-b from-cyan-400/8 via-transparent to-blue-400/8 transform -rotate-12 animate-pulse" style={{ animationDelay: '1s' }} />
-      
-      {/* Slides container with smooth horizontal transition */}
+    <div 
+      ref={containerRef}
+      className="relative w-full min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900"
+      style={{
+        background: `
+          radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.2) 0%, transparent 50%),
+          linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #1e293b 100%)
+        `,
+        overflowX: 'hidden',
+        overflowY: isMobile ? 'auto' : 'hidden'
+      }}
+    >
+      {/* Dynamic slides container */}
       <div 
-        ref={containerRef}
-        className="h-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] flex will-change-transform"
-        style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
+        className={`${isMobile ? 'block' : 'flex transition-transform duration-500 ease-out'}`}
+        style={{ 
+          transform: isMobile ? 'none' : `translateX(-${currentSlide * 100}%)`,
+          minHeight: '100vh'
+        }}
       >
         {slides.map((slide, index) => (
-          <div key={index} className="w-screen flex-shrink-0">
+          <div
+            key={index}
+            className={`${isMobile ? 'w-full' : 'w-full h-screen flex-shrink-0'} ${isMobile && index !== currentSlide ? 'hidden' : ''}`}
+          >
             {slide}
           </div>
         ))}
       </div>
 
-      {/* Navigation arrows - hidden on mobile */}
+      {/* Navigation arrows - only on desktop */}
       {!isMobile && (
         <>
           <button
             onClick={() => goToSlide(currentSlide - 1)}
             disabled={currentSlide === 0 || isTransitioning}
-            className="fixed left-8 top-1/2 transform -translate-y-1/2 p-4 rounded-full backdrop-blur-3xl bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-white hover:text-white hover:bg-[rgba(255,255,255,0.1)] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 z-50"
+            className="fixed left-8 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-lg border border-white/20 rounded-2xl p-4 text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed z-50"
           >
             <ChevronLeft className="w-8 h-8" />
           </button>
-
           <button
             onClick={() => goToSlide(currentSlide + 1)}
             disabled={currentSlide === totalSlides - 1 || isTransitioning}
-            className="fixed right-8 top-1/2 transform -translate-y-1/2 p-4 rounded-full backdrop-blur-3xl bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-white hover:text-white hover:bg-[rgba(255,255,255,0.1)] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 z-50"
+            className="fixed right-8 top-1/2 transform -translate-y-1/2 bg-white/10 hover:bg-white/20 backdrop-blur-lg border border-white/20 rounded-2xl p-4 text-white transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed z-50"
           >
             <ChevronRight className="w-8 h-8" />
           </button>
